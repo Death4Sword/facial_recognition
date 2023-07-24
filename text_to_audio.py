@@ -16,3 +16,5 @@ def text_to_audio_func(face_names):
     file = "recognition_name.mp3"
     print("Bonjour" + str(face_names) + " j'espère que vous allez bien !")
     playsound("recognition_name.mp3")
+
+
