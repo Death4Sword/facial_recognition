@@ -1,7 +1,6 @@
 import cv2
 from simple_facerec import SimpleFacerec
-from playsound import playsound
-from gtts import gTTS
+from text_to_audio import text_to_audio_func
 
 # Encode faces from a folder
 sfr = SimpleFacerec()
@@ -46,21 +45,21 @@ while True:
             print("You are not in the database !")
             pass
         elif face_names[0] != "Unknown":
-        #Write your text
-            recognition_name = "Bonjour " + str(face_names) + " j'espère que tu vas bien !"
+            text_to_audio_func(face_names)
+        # #Write your text
+        #     recognition_name = "Bonjour " + str(face_names) + " j'espère que tu vas bien !"
 
-        #Choose your language (en : english, fr: french, ...)
-            language = "fr"
+        # #Choose your language (en : english, fr: french, ...)
+        #     language = "fr"
 
-        #Passing the text, language and the speed to the module
-            myobj = gTTS(text=recognition_name, lang=language, slow=False)
+        # #Passing the text, language and the speed to the module
+        #     myobj = gTTS(text=recognition_name, lang=language, slow=False)
 
-        #Saving the audio in mp3
-            myobj.save("recognition_name.mp3")
-
-            file = "recognition_name.mp3"
-            print("Bonjour" + str(face_names) + " j'espère que vous allez bien !")
-            playsound("recognition_name.mp3")
+        # #Saving the audio in mp3
+        #     myobj.save("recognition_name.mp3")
+        #     file = "recognition_name.mp3"
+        #     print("Bonjour" + str(face_names) + " j'espère que vous allez bien !")
+        #     playsound("recognition_name.mp3")
     
 
     
