@@ -8,20 +8,42 @@ class SimpleFacerec:
     def __init__(self):
         self.known_face_encodings = []
         self.known_face_names = []
-
+        self.images_folder_names = []
+        # self.images_folder_names =""
         # Resize frame for a faster speed
         self.frame_resizing = 0.25
 
+   
+
     def load_encoding_images(self, images_path):
+        # """
+        # Load encoding images from path
+        # :param images_path:
+        # :return:
+        # """
+        # # Load Images
+        # self.images_folder_names = os.path.basemane(images_path)
+        # images_path = glob.glob(os.path.join(images_path, "*.*"))
+
+        # print("{} encoding images found.".format(len(images_path)))
+
+
+        # SHIT STORM A DELETE SI MARCHE PAS RETOUR EN ARRIERE POSSIBLE !!!!!!!!!!
         """
         Load encoding images from path
         :param images_path:
         :return:
         """
+        # Get the folder name from the images_path and set it to self.images_folder_name
+        self.images_folder_names.append(os.path.basename(images_path))
+        print("Loading encoding images from folder:", self.images_folder_names)
+
         # Load Images
         images_path = glob.glob(os.path.join(images_path, "*.*"))
+        # SHIT STORM A DELETE SI MARCHE PAS RETOUR EN ARRIERE POSSIBLE !!!!!!!!!!!
 
-        print("{} encoding images found.".format(len(images_path)))
+
+
 
         # Store image encoding and names
         for img_path in images_path:
@@ -31,6 +53,7 @@ class SimpleFacerec:
             # Get the filename only from the initial file path.
             basename = os.path.basename(img_path)
             (filename, ext) = os.path.splitext(basename)
+            print(os.path.basename(basename))
             # Get encoding
             img_encoding = face_recognition.face_encodings(rgb_img)[0]
 
@@ -57,15 +80,19 @@ class SimpleFacerec:
             # # If a match was found in known_face_encodings, just use the first one.
             # if True in matches:
             #     first_match_index = matches.index(True)
-            #     name = known_face_names[first_match_index]
+                # name = known_face_names[first_match_index]
+
 
             # Or instead, use the known face with the smallest distance to the new face
             face_distances = face_recognition.face_distance(self.known_face_encodings, face_encoding)
             best_match_index = np.argmin(face_distances)
             if matches[best_match_index]:
-                name = self.known_face_names[best_match_index]
+                name = self.images_folder_names
+            else :
+                name = "Unknown"
+                # name = self.known_face_names[best_match_index] 
+            # name = self.images_folder_names if matches[best_match_index] else "Unknown"
             face_names.append(name)
-        
             
             
         # Convert to numpy array to adjust coordinates with frame resizing quickly

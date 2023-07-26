@@ -14,7 +14,7 @@ def text_to_audio_func(face_names):
     #Saving the audio in mp3
     myobj.save("recognition_name.mp3")
     file = "recognition_name.mp3"
-    print("Bonjour" + str(face_names) + " j'espère que vous allez bien !")
+    print("Bonjour " + str(face_names) + " j'espère que vous allez bien !")
     playsound("recognition_name.mp3")
 
 
