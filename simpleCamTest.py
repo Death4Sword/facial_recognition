@@ -7,8 +7,8 @@ import os
 # Encode faces from a folder
 sfr = SimpleFacerec()
 # sfr.load_encoding_images("images")
-sfr.load_encoding_images("dataset/antoine")
-sfr.load_encoding_images("dataset/messi")
+sfr.register_faces("dataset")
+# sfr.register_faces("dataset/messi")
 
 # Load Camera
 cap = cv2.VideoCapture("/dev/video2")
@@ -29,7 +29,7 @@ while True:
     for face_loc, name in zip(face_locations, face_names):
         y1, x2, y2, x1 = face_loc[0], face_loc[1], face_loc[2], face_loc[3]
 
-        cv2.putText(frame, str(name[0]),(x1, y1 - 10), cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 200), 2) # str(name[value_get_person_to_print])
+        cv2.putText(frame, str(face_names),(x1, y1 - 10), cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 200), 2) # str(name[value_get_person_to_print])
         cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 200), 4)
     # if detected -> if always same name --> one print only with no actualisation
     imgBackground[355:355+480,97:97+640] = frame
